@@ -7,23 +7,23 @@ export enum ROL {
 }
 
 export interface UserCreate {
-  email: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  image: string;
-  team?: string;
-  rol: ROL;
+  email: string
+  password: string
+  firstName: string
+  lastName: string
+  image: string
+  team?: string
+  rol: ROL
 }
 
 export interface UserResponse {
-  _id: string;
-  email: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  image: string;
-  team?: string | TeamResponse;
-  rol: ROL;
+  _id: string
+  email: string
+  password: string
+  firstName: string
+  lastName: string
+  image: string
+  team?: string | TeamResponse
+  rol: ROL
 }
 export type { TeamResponse };

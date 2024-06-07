@@ -6,25 +6,25 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 interface Team {
-  _id: string;
-  name: string;
-  alias: string;
+  _id: string
+  name: string
+  alias: string
 }
 
 interface Match {
-  _id: string;
-  homeTeam: Team;
-  awayTeam: Team;
-  homeGoals: number;
-  awayGoals: number;
-  status: string;
+  _id: string
+  homeTeam: Team
+  awayTeam: Team
+  homeGoals: number
+  awayGoals: number
+  status: string
 }
 
 interface Matchday {
-  _id: string;
-  matchdayNumber: number;
-  date: string;
-  matches: Match[];
+  _id: string
+  matchdayNumber: number
+  date: string
+  matches: Match[]
 }
 
 const MatchdayTable = (): JSX.Element => {

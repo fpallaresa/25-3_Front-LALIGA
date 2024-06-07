@@ -3,13 +3,13 @@ import shield from "../../../assets/shield.png";
 import "./StandingTable.scss";
 
 interface TeamStanding {
-  position: number;
-  teamName: string;
-  points: number;
-  played: number;
-  wins: number;
-  draws: number;
-  losses: number;
+  position: number
+  teamName: string
+  points: number
+  played: number
+  wins: number
+  draws: number
+  losses: number
 }
 
 const StandingTable = (): JSX.Element => {
