@@ -1,0 +1,40 @@
+@import "../../styles/variables.scss";
+
+.home-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    
+    &__container {
+        flex: 1;
+    }
+
+    &__image {
+        width: 100%;
+        height: auto;
+        top: 0px;
+        z-index:0;
+        border-bottom: 20px $dark-color solid;
+    }
+
+    &__data{
+        margin: -200px auto;
+        z-index: 100;
+        display: flex;
+        max-width: 1200px;
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    &__standing {
+        width: 100%;
+        max-width: 510px;
+    }
+
+    &__matchdays {
+        width: 100%;
+        max-width: 510px;
+        background-color: $primary-color;
+        border-radius: 20px;
+    }
+}

@@ -1,0 +1,104 @@
+@import "../../styles/variables.scss";
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  background-color: $primary-color;
+  padding: 0 20px;
+  z-index: 100;
+
+  &--admin {
+    background-color: $tertiary-color;
+  }
+
+  &--delegate {
+    background-color: $secondary-color;
+  }
+
+  &--user {
+    background-color: $primary-color;
+  }
+
+  &__link {
+    text-align: center;
+    color: #333;
+    text-decoration: none;
+    padding: 0 10px;
+    font-size: $fontsize-l;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-left: 4px $quaternary-color solid;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  &__home {
+    top: 0;
+    left: 0;
+    padding: 20px;
+  }
+  &__user-info-sign-in {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 110px;
+    font-size: $fontsize-xs;
+
+    & a {
+      text-decoration: none;
+      text-transform: uppercase;
+      color: $dark-color;
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+
+    & span {
+      text-decoration: none;
+      text-transform: uppercase;
+      color: $dark-color;
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  &__user-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 130px;
+    padding: 4px 14px;
+    border: 1px solid #030303;
+    font-size: $fontsize-xs;
+    
+    & a {
+      text-decoration: none;
+      text-transform: uppercase;
+      color: $dark-color;
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  &__user-icon {
+    font-size: $fontsize-m;
+  }
+
+  &__name {
+    margin-right: 10px;
+  }
+
+  &__logout {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}

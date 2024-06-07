@@ -1,0 +1,32 @@
+@import "../../styles/variables.scss";
+
+.profile-admin-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: $light-grey-color;
+
+    &__container {
+        flex: 1;
+        display: flex;
+        width: 100%;
+    }
+    &__sidebar-content{
+        width: 272px;
+    }
+
+    &__main-content {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 40px 40px 40px 50px;
+    }
+
+    &__options {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+        margin-bottom: 70px;
+    }
+
+}

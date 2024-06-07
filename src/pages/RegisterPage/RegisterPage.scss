@@ -1,0 +1,72 @@
+@import "../../styles/variables.scss";
+
+.register-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: $primary-color;
+
+  &__main-container {
+    flex: 1;
+    margin: 70px auto 40px;
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    background: $lightcolor;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__title {
+    font-size: $fontsize-xxl;
+    font-weight: 700;
+    color: $dark-color;
+    border-left: 4px $quaternary-color solid;
+    width: 220px;
+    padding-left:20px;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+  }
+
+  &__subtitle {
+    font-size: $fontsize-xl;
+    font-weight: 700;
+    color: $dark-color;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  &__description {
+    font-size: $fontsize-s;
+    font-weight: 300;
+    color: $dark-color;
+    margin-bottom: 50px;
+  }
+
+  &__form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    & label {
+      margin-top: 20px;
+    }
+
+    & :first-child {
+      margin-top: 0px;
+    }
+  }
+
+  &__button-register {
+    text-decoration: none;
+    margin-top: 10px;
+ }
+
+ &__button-sing-up {
+    margin-top: 30px;
+ }
+
+}

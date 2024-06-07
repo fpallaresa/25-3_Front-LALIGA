@@ -1,0 +1,138 @@
+@import "../../../styles/variables.scss";
+
+.league-table {
+  border-radius: 20px;
+  padding: 20px;
+  width: 100%;
+
+  &__title {
+    text-align: left;
+    background-color: $dark-color;
+    color: $lightcolor;
+    font-size: $fontsize-m;
+    font-weight: 700;
+    border-radius: 8px;
+    padding: 10px 20px;
+    width: 420px;
+    z-index: 100;
+    position: relative;
+  }
+
+  &__subtitle {
+    font-weight: 700;
+    font-size: $fontsize-s;
+    background-color: $grey-color;
+    height: 42px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 0;
+    position:relative;
+    text-align: left;
+    padding: 0 15px;
+  }
+
+  &__container {
+    background-color: $primary-color;
+    padding: 20px 30px;
+    margin: -20px 0 20px 20px;
+    border-radius: 20px;
+    text-align: center;
+  }
+
+    &__item {
+        margin: 60px auto;
+    }
+
+  &__table {
+    color: $dark-color;
+    font-size: $fontsize-s;
+    font-weight: 500;
+    width: 100% !important;
+    border-collapse: collapse;
+    text-align: left;
+  }
+
+  &__status {
+    background: $dark-grey-color;
+    text-align: center;
+    padding: 0 10px!important;
+    width: 120px;
+  }
+
+  & img {
+    display:inline-block !important;
+  }
+
+  &__thead th {
+    font-weight: 500;
+    background-color: $lightcolor;
+    border: none;
+    padding: 10px;
+    font-size: $fontsize-s;
+    text-align: center;
+  }
+
+  &__tbody tr {
+    display: flex;
+    justify-content: center;
+    border-top: 10px solid $primary-color;
+    background-color: white;
+    position: relative;
+  }
+
+  &__tbody td {
+    display: flex;
+    align-items: center;
+    border: none;
+    padding: 5px;
+    vertical-align: middle;
+    justify-content: center;
+    width: 120px;
+  }
+
+  &__home-team {
+    text-align: right!important;
+  }
+
+  &__home-team-image {
+    margin-left: 5px;
+    margin-right: 10px;
+  }
+
+  &__away-team-image {
+    margin-right: 5px;
+    margin-left: 10px;
+  }
+
+  &__generate-new-league {
+    color: $quaternary-color
+  }
+
+  &__edit {
+    position: absolute;
+    top: 16px;
+    right: 30px;
+    text-transform: uppercase;
+    color: $dark-grey-color;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  &__save {
+    position: absolute;
+    top: 16px;
+    right: 30px;
+    text-transform: uppercase;
+    color: $senary-color;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+}

@@ -1,0 +1,92 @@
+@import "../../../styles/variables.scss";
+
+.matchday-table {
+  background-color: $primary-color;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 0;
+
+  &__title {
+    text-align: center;
+    background-color: $dark-color;
+    color: $lightcolor;
+    font-size: $fontsize-m;
+    font-weight: 700;
+    border-radius: 8px;
+    padding: 10px;
+  }
+
+  &__subtitle {
+    font-weight: 500;
+    font-size: $fontsize-s;
+    background-color: $lightcolor;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 0;
+    position:relative;
+  }
+
+  &__table {
+    color: $dark-color;
+    font-size: $fontsize-s;
+    font-weight: 500;
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  &__tbody tr {
+    border-top: 10px solid $primary-color;
+    background-color: white;
+  }
+
+  &__tbody td {
+    vertical-align: middle;
+  }
+
+  &__status {
+    background: $dark-grey-color;
+    text-align: center;
+    padding: 0 10px;
+    width: 120px;
+  }
+
+  &__tbody td > * {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__home-team {
+    text-align: right!important;
+  }
+  
+  & img {
+    display:inline-block !important;
+  }
+
+  &__home-team-image {
+    margin-left: 5px;
+    margin-right: 10px;
+  }
+
+  &__away-team-image {
+    margin-right: 5px;
+    margin-left: 10px;
+  }
+}
+
+.slick-prev {
+  left: 10px!important;
+  top: 14%!important;
+  z-index: 100;
+}
+
+.slick-next {
+  right: 10px!important;
+  top: 14%!important;
+}
+
+.slick-prev:before, .slick-next:before {
+  color: $dark-color!important;
+}

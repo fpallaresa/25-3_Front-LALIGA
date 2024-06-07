@@ -1,0 +1,106 @@
+@import "../../../styles/variables.scss";
+
+.team-table {
+  border-radius: 20px;
+  padding: 20px;
+  width: 100%;
+
+  &__title {
+    text-align: left;
+    background-color: $dark-color;
+    color: $lightcolor;
+    font-size: $fontsize-m;
+    font-weight: 700;
+    border-radius: 8px;
+    padding: 10px 20px;
+    width: 420px;
+    z-index: 100;
+    position: relative;
+  }
+
+  &__container {
+    background-color: $primary-color;
+    padding: 20px 30px;
+    margin: -20px 0 20px 20px;
+    border-radius: 20px;
+  }
+
+  &__table {
+    color: $dark-color;
+    font-size: $fontsize-s;
+    font-weight: 500;
+    width: 100% !important;
+    border-collapse: collapse;
+    text-align: left;
+  }
+
+  &__thead th {
+    font-weight: 500;
+    background-color: $lightcolor;
+    border: none;
+    padding: 10px;
+    font-size: $fontsize-s;
+    text-align: center;
+  }
+
+  &__tbody tr {
+    border-top: 10px solid $primary-color;
+    background-color: white;
+  }
+
+  &__tbody td {
+    border: none;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+    height: 50px;
+  }
+
+  &__tbody td img {
+    width: 50px;
+    top: 1px;
+    left: -25px;
+    position: relative;
+  }
+
+  &__delete {
+    text-transform: uppercase;
+    color: $quinary-color;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  &__column-non-display {
+    text-transform: uppercase;
+    color: $quinary-color;
+  }
+
+  &__add-players {
+    text-transform: uppercase;
+    color: $quaternary-color;
+    margin-bottom: 20px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  &__add {
+    text-transform: uppercase;
+    color: $senary-color;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  &__column-add-non-display {
+    text-transform: uppercase;
+    color: $senary-color;
+  }
+}

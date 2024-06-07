@@ -1,0 +1,72 @@
+@import "../../../styles/variables.scss";
+
+.standing-table {
+  background-color: $primary-color;
+  border-radius: 20px;
+  padding: 20px;
+
+  &__title {
+    text-align: center;
+    background-color: $dark-color;
+    color: $lightcolor;
+    font-size: $fontsize-m;
+    font-weight: 700;
+    border-radius: 8px;
+    padding: 10px;
+  }
+
+  &__table {
+    color: $dark-color;
+    font-size: $fontsize-s;
+    font-weight: 500;
+    width: 100%!important;
+    border-collapse: collapse;
+  }
+
+  &__thead th {
+    font-weight: 500;
+    background-color: $lightcolor;
+    border: none;
+    padding: 10px;
+  }
+
+  &__tbody tr {
+    border-top: 10px solid $primary-color;
+    background-color: white;
+  }
+
+  &__tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  &__tbody td {
+    border: none;
+    padding: 4px 10px;
+    text-align: center;
+    vertical-align: middle;
+
+    &__tteam {
+        text-align: left;
+    }
+  }
+
+  &__tbody td > * {
+    display: inline-block; 
+    vertical-align: middle; 
+  }
+
+  &__tbody td img {
+    margin-right: 5px;
+  }
+
+  &__tposition {
+    background-color: $dark-color;
+    color: $lightcolor;
+    font-size: $fontsize-m;
+    text-align: center!important;
+  }
+  
+  &__tteam {
+    text-align: left!important;
+  }
+}
