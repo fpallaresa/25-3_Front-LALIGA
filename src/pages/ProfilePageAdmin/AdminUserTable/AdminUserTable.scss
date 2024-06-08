@@ -60,7 +60,7 @@
 
   &__tbody td {
     border: none;
-    padding: 0;
+    padding: 0 5px;
     text-align: center;
     vertical-align: middle;
     height: 50px;
@@ -77,6 +77,8 @@
     text-transform: uppercase;
     color: $quinary-color;
     cursor: pointer;
+    border: none;
+    background: none;
 
     &:hover {
       opacity: 0.5;
@@ -87,6 +89,20 @@
     text-transform: uppercase;
     color: $dark-grey-color;
     cursor: pointer;
+        border: none;
+    background: none;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  &__save {
+    text-transform: uppercase;
+    color: $senary-color;
+    cursor: pointer;
+        border: none;
+    background: none;
 
     &:hover {
       opacity: 0.5;

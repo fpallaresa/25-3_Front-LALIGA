@@ -4,10 +4,18 @@ import { AuthContext } from "../../../App";
 import profileimage from "../../../assets/profile-image.png";
 import { ROL, UserCreate, UserResponse } from "../../../models/User";
 
+interface TeamResponse {
+  alias: string
+}
+
 const AdminUserTable = (): JSX.Element => {
   const API_URL_USER = `${process.env.REACT_APP_API_URL as string}/user/`;
+  const API_URL_TEAM = `${process.env.REACT_APP_API_URL as string}/team/`;
   const authInfo = useContext(AuthContext);
   const [users, setUsers] = useState<UserResponse[]>([]);
+  const [teams, setTeams] = useState<TeamResponse[]>([]);
+  const [editMode, setEditMode] = useState<Record<string, boolean>>({});
+  const [newUserData, setNewUserData] = useState<Record<string, Partial<UserResponse>>>({});
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const firstNameRef = useRef<HTMLInputElement>(null);
@@ -16,6 +24,7 @@ const AdminUserTable = (): JSX.Element => {
 
   useEffect(() => {
     fetchUsers();
+    fetchTeams();
   }, []);
 
   const fetchUsers = (): void => {
@@ -23,7 +32,7 @@ const AdminUserTable = (): JSX.Element => {
       fetch(API_URL_USER + "?limit=200", {
         method: "GET",
         headers: {
-          "Authorization": `Bearer ${authInfo.userToken}`,
+          Authorization: `Bearer ${authInfo.userToken}`,
         },
       })
         .then(async (response) => {
@@ -34,6 +43,30 @@ const AdminUserTable = (): JSX.Element => {
         })
         .then((responseParsed) => {
           setUsers(responseParsed.data);
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("Ha ocurrido un error en la petición");
+        });
+    }
+  };
+
+  const fetchTeams = (): void => {
+    if (authInfo?.userToken) {
+      fetch(API_URL_TEAM, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${authInfo.userToken}`,
+        },
+      })
+        .then(async (response) => {
+          if (response.status !== 200) {
+            alert("Ha ocurrido un error en la petición de equipos");
+          }
+          return await response.json();
+        })
+        .then((responseParsed) => {
+          setTeams(responseParsed.data);
         })
         .catch((error) => {
           console.error(error);
@@ -96,7 +129,7 @@ const AdminUserTable = (): JSX.Element => {
     fetch(`${API_URL_USER}${userId}`, {
       method: "DELETE",
       headers: {
-        "Authorization": `Bearer ${authInfo.userToken as string}`,
+        Authorization: `Bearer ${authInfo.userToken as string}`,
       },
     })
       .then((response) => {
@@ -112,7 +145,50 @@ const AdminUserTable = (): JSX.Element => {
       });
   };
 
-  const getTeamAlias = (team?: string | { alias: string }): string => {
+  const handleEditClick = (userId: string): void => {
+    setEditMode({ ...editMode, [userId]: true });
+    setNewUserData({ ...newUserData, [userId]: { ...users.find((user) => user._id === userId) } });
+  };
+
+  const handleInputChange = (userId: string, field: string, value: any): void => {
+    setNewUserData({
+      ...newUserData,
+      [userId]: {
+        ...newUserData[userId],
+        [field]: field === "team" ? teams.find((team) => team.alias === value) : value,
+      },
+    });
+  };
+
+  const handleSaveClick = (userId: string): void => {
+    const updatedUser = newUserData[userId];
+    if (authInfo?.userToken) {
+      fetch(`${API_URL_USER}${userId}`, {
+        method: "PUT",
+        headers: {
+          "Authorization": `Bearer ${authInfo.userToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedUser),
+      })
+        .then(async (response) => {
+          if (response.status !== 200) {
+            alert("Ha ocurrido un error en la petición");
+          }
+          return await response.json();
+        })
+        .then(() => {
+          setEditMode({ ...editMode, [userId]: false });
+          fetchUsers();
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("Ha ocurrido un error en la petición");
+        });
+    }
+  };
+
+  const getTeamAlias = (team?: string | TeamResponse): string => {
     if (!team) {
       return "";
     }
@@ -146,13 +222,122 @@ const AdminUserTable = (): JSX.Element => {
                   <td>
                     <img src={profileimage} alt={`${user.firstName}`} />
                   </td>
-                  <td>{user.firstName}</td>
-                  <td>{user.lastName}</td>
-                  <td>{user.email}</td>
-                  <td>{getTeamAlias(user.team)}</td>
-                  <td>{user.rol}</td>
-                  <td className="user-table__edit">EDITAR</td>
-                  <td className="user-table__delete"><button className="user-table__button"onClick={() => { deleteUser(user._id) }}>ELIMINAR</button></td>
+                  <td>
+                    {editMode[user._id] ? (
+                      <input
+                        className="user-table__input-name"
+                        type="text"
+                        placeholder="Introduce nombre"
+                        value={newUserData[user._id]?.firstName ?? ""}
+                        onChange={(e) => {
+                          handleInputChange(user._id, "firstName", e.target.value);
+                        }}
+                      />
+                    ) : (
+                      user.firstName
+                    )}
+                  </td>
+                  <td>
+                    {editMode[user._id] ? (
+                      <input
+                        className="user-table__input-lastname"
+                        type="text"
+                        placeholder="Introduce apellidos"
+                        value={newUserData[user._id]?.lastName ?? ""}
+                        onChange={(e) => {
+                          handleInputChange(user._id, "lastName", e.target.value);
+                        }}
+                      />
+                    ) : (
+                      user.lastName
+                    )}
+                  </td>
+                  <td>
+                    {editMode[user._id] ? (
+                      <input
+                        className="user-table__input-email"
+                        type="email"
+                        placeholder="Introduce email"
+                        value={newUserData[user._id]?.email ?? ""}
+                        onChange={(e) => {
+                          handleInputChange(user._id, "email", e.target.value);
+                        }}
+                      />
+                    ) : (
+                      user.email
+                    )}
+                  </td>
+                  <td className="user-table__select">
+                    {editMode[user._id] ? (
+                      <select
+                        value={getTeamAlias(user.team)}
+                        onChange={(e) => {
+                          handleInputChange(user._id, "team", e.target.value);
+                        }}
+                      >
+                        <option value="">Selecciona equipo</option>
+                        {teams.map((team) => (
+                          <option key={team.alias} value={team.alias}>
+                            {team.alias}
+                          </option>
+                        ))}
+                      </select>
+                    ) : (
+                      getTeamAlias(user.team)
+                    )}
+                  </td>
+                  <td className="user-table__select">
+                    {editMode[user._id] ? (
+                      <select
+                        value={newUserData[user._id]?.rol ?? ""}
+                        onChange={(e) => {
+                          handleInputChange(user._id, "rol", e.target.value as ROL);
+                        }}
+                      >
+                        <option value="">Selecciona rol</option>
+                        <option value={ROL.PLAYER}>{ROL.PLAYER}</option>
+                        <option value={ROL.DELEGATE}>{ROL.DELEGATE}</option>
+                        <option value={ROL.ADMIN}>{ROL.ADMIN}</option>
+                      </select>
+                    ) : (
+                      user.rol
+                    )}
+                  </td>
+                  <td>
+                    {editMode[user._id] ? (
+                      <button
+                        className="user-table__save"
+                        onClick={() => {
+                          handleSaveClick(user._id);
+                        }}
+                      >
+                        Guardar
+                      </button>
+                    ) : (
+                      <button
+                        className="user-table__edit"
+                        onClick={() => {
+                          handleEditClick(user._id);
+                        }}
+                      >
+                        Editar
+                      </button>
+                    )}
+                  </td>
+                  <td>
+                    {editMode[user._id] ? (
+                      <button
+                        className="user-table__delete"
+                        onClick={() => {
+                          deleteUser(user._id);
+                        }}
+                      >
+                        Eliminar
+                      </button>
+                    ) : (
+                      <td></td>
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -190,7 +375,9 @@ const AdminUserTable = (): JSX.Element => {
                     </select>
                   </td>
                   <td className="user-table__add">
-                    <button type="submit" className="user-table__button">AÑADIR</button>
+                    <button type="submit" className="user-table__button">
+                      AÑADIR
+                    </button>
                   </td>
                 </tr>
               </tbody>
