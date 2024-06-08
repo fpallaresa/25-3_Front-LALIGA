@@ -16,7 +16,7 @@ const ProfilePage = (): JSX.Element => {
   const API_URL_MATCHDAY = `${process.env.REACT_APP_API_URL as string}/matchday/`;
   const authInfo = useContext(AuthContext);
   const [team, setTeam] = useState<TeamResponse | null>(null);
-  const [matchday, setMatchday] = useState<MatchdayResponse | null>(null);
+  const [, setMatchday] = useState<MatchdayResponse | null>(null);
 
   const updateTeam = (): void => {
     if (authInfo?.userInfo?.team && typeof authInfo.userInfo.team === "string") {
@@ -93,7 +93,7 @@ const ProfilePage = (): JSX.Element => {
             </div>
             <div className="profile-page__main-content">
               <TeamTable team={team} updateTeam={updateTeam} />
-              <MatchdayTable matchday={matchday} />
+              <MatchdayTable />
             </div>
           </div>
           <Footer />

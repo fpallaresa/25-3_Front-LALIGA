@@ -129,7 +129,7 @@ const AdminLeague = (): JSX.Element => {
                     <tr key={match._id}>
                       <td className="league-table__home-team">
                         {match.homeTeam.alias}
-                        <img className="league-table__home-team-image" src={shield} alt={`${match.homeTeam.name} shield`} />
+                        <img className="league-table__home-team-image" src={shield} alt={`${match.homeTeam.name}`} />
                       </td>
                       <td className="league-table__status">
                         {editMode[match._id] ? (

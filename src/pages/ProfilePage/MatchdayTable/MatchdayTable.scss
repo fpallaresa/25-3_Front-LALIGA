@@ -1,8 +1,9 @@
 @import "../../../styles/variables.scss";
 
-.team-table {
+.matchday-table-user {
   border-radius: 20px;
   padding: 20px;
+  width: 100%;
 
   &__title {
     text-align: left;
@@ -20,8 +21,18 @@
   &__container {
     background-color: $primary-color;
     padding: 20px 30px;
-    margin: -20px 0 0 20px;
+    margin: -20px 0 20px 20px;
     border-radius: 20px;
+
+    & form {
+       display: flex;
+       width: 100%;
+
+       & td {
+        height: 50px;
+        padding: 0 5px;
+       }
+    }
   }
 
   &__table {
@@ -45,40 +56,49 @@
   &__tbody tr {
     border-top: 10px solid $primary-color;
     background-color: white;
-  }
-
-  &__tbody tr:last-child {
-    border-bottom: none;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 30px;
   }
 
   &__tbody td {
+    align-items: center;
     border: none;
-    padding: 0;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding: 5px;
     vertical-align: middle;
-    height: 50px;
+    width: 120px;
   }
 
-  &__tbody td > * {
-    display: inline-block;
-    vertical-align: middle;
+  &__matchday {
+    font-weight: 700;
+    width: 320px!important;
+    justify-content: flex-start!important;
   }
 
-  &__tbody td img {
+  &__home-team {
+    width: 150px;
+  }
+
+  &__away-team {
+    width: 150px;
+  }
+
+  &__away-team-image {
     margin-right: 5px;
-    width: 50px;
-    left: -25px;
-    position: relative;
+    margin-left: 10px;
   }
 
-  &__tposition {
-    background-color: $dark-color;
-    color: $lightcolor;
-    font-size: $fontsize-m;
-    text-align: center !important;
+  &__home-team-image {
+    margin-left: 5px;
+    margin-right: 10px;
   }
 
-  &__tteam {
-    text-align: left !important;
+  &__status {
+    background: $dark-grey-color;
+    text-align: center;
+    padding: 0 10px!important;
+    width: 120px;
   }
 }
